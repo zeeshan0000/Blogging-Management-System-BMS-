@@ -28,12 +28,41 @@
                             <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">
                                 Edit
                             </a>
+                            <form action="{{action('CategoriesController@destroy', $category['id'])}}" method = "POST" class = "delete_form" >
+                        
+                                @csrf
+
+                                <input type="hidden" name = "_method" value = "DELETE">
+                                <button type = "submit" class="btn btn-danger btn-sm">Delete</button>
+                           </form>
+                           
+                           
                         </td>
                     </tr>
                  @endforeach
              </tbody>
             </table> 
+
+            </div>
+            </div>
+
+            
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('.delete_form').on('submit', function(){
+                if(confirm("Are you sure you want to delete it?"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+        });
+    </script>
 
 @endsection
+
