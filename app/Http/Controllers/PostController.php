@@ -6,6 +6,7 @@ use App\Post;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Post\CreatePostsRequest;
+use App\Http\Requests\Posts\UpdatePostRequest;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -44,7 +45,7 @@ class PostController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
-            'image' => $image,
+            'image' => $image, 
             'published_at' => $request->published_at
         ]);
         session() -> flash('success', 'Post created successfully.');
@@ -69,9 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.create')->with('post', $post);
     }
 
     /**
@@ -81,9 +82,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+
+        $data = $request->only(['title', 'description', 'published_at', 'content']);
+        if($request->hasFile('image')){
+          $image =  $request -> image -> store('posts'); 
+
+          Storage::delete($post->image);
+
+          $data['image'] = $image;
+        }
+
+        $post -> update($data);
+
+        session()->flash('success' , 'Post updated successfully.' );
+        
+        return redirect(route('posts.index'));
+
     }
 
     /**
@@ -118,7 +134,7 @@ class PostController extends Controller
 
     public function trashed()
     {
-        $trashed = Post::withTrashed()->get();
+        $trashed = Post::onlyTrashed()->get();
 
         return view('posts.index')->with('posts', $trashed);
     }
