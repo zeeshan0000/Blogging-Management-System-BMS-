@@ -12,35 +12,40 @@
              Categories
         </div>
         <div class="card-body">
-             <table class="table">
-                 <thead>
-                    <th>Name</th> 
-                    <th></th>
-                 </thead>
+             
+            @if($categories->count() > 0)
+            <table class="table">
+                <thead>
+                   <th>Name</th> 
+                   <th></th>
+                </thead>
 
-             <tbody>
-                 @foreach($categories as $category)
-                    <tr>
-                        <td>
-                            {{ $category -> name }}
-                        </td>
-                        <td>
-                            <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">
-                                Edit
-                            </a>
-                            <form action="{{action('CategoriesController@destroy', $category['id'])}}" method = "POST" class = "delete_form" >
-                        
-                                @csrf
+            <tbody>
+                @foreach($categories as $category)
+                   <tr>
+                       <td>
+                           {{ $category -> name }}
+                       </td>
+                       <td>
+                           <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">
+                               Edit
+                           </a>
+                           <form action="{{action('CategoriesController@destroy', $category['id'])}}" method = "POST" class = "delete_form" >
+                       
+                               @csrf
 
-                                <input type="hidden" name = "_method" value = "DELETE">
-                                <button type = "submit" class="btn btn-danger btn-sm">Delete</button>
-                           </form>
-                           
-                        </td>
-                    </tr>
-                 @endforeach
-             </tbody>
-            </table> 
+                               <input type="hidden" name = "_method" value = "DELETE">
+                               <button type = "submit" class="btn btn-danger btn-sm">Delete</button>
+                          </form>
+                          
+                       </td>
+                   </tr>
+                @endforeach
+            </tbody>
+           </table> 
+            @else
+                <h3 class="text-center">No categories yet</h3>
+            @endif
             </div>
             </div>
 
