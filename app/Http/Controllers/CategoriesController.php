@@ -102,6 +102,13 @@ class CategoriesController extends Controller
 
         $category = Category::find($id);
 
+        if($category->posts->count() > 0){
+            session()->Flash('error', 'Category cannot be Deleted because, it has some posts.');
+        
+            return redirect(route('categories.index'));
+        }
+        
+
         $category -> delete();
         
         session()->Flash('success', 'Category Deleted Successfully.');

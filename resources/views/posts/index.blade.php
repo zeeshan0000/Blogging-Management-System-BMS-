@@ -16,19 +16,16 @@
     @if($posts->count() > 0)
         <table class="table">
             <thead>
-                <th>Images</th>
+                
                 <th>Titles</th>
                 <th>Category</th>
                 <th></th>
                 <th></th>
+                
              </thead> 
              <tbody>
                  @foreach ($posts as $post)
                  <tr>
-                     <td>           
-                         {{ $post->image }}
-                     </td>
- 
                      <td>
                          {{ $post->title }}
                      </td>
