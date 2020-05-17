@@ -14,7 +14,7 @@
     @if($users->count() > 0)
         <table class="table">
             <thead>
-                
+                <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th></th>
@@ -24,6 +24,9 @@
              <tbody>
                  @foreach ($users as $user)
                  <tr>
+                     <td>
+                         <img style="width:40px;height:40px;border-radius:50%"src="{{Gravatar::src($user->email)}}" alt="">
+                     </td>
                      <td>
                          {{ $user->name }}
                      </td>
