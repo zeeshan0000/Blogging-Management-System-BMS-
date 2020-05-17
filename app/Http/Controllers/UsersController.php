@@ -25,6 +25,10 @@ class UsersController extends Controller
     public function makeAdmin(User $user)
     {
             $user->role='admin';
+            $user->save();
+            session()->flash('success','User made admin Successfully!!!');
+            return redirect(route('users.index'));
+        
     }
     public function create()
     {
