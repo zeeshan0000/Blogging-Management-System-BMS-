@@ -5,7 +5,7 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 use App\Http\Middleware\verifyCategoriesCount;
-
+use App\Http\Middleware\verifyIsAdmin;
 class Kernel extends HttpKernel
 {
     /**
@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'verifyCategoriesCount' => VerifyCategoriesCount::class
+        'verifyCategoriesCount' => VerifyCategoriesCount::class,
+        'admin'=>VerifyIsAdmin::class
     ];
 }
