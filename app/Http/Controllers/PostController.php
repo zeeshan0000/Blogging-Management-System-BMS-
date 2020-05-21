@@ -50,6 +50,7 @@ class PostController extends Controller
 
         $post = Post::create([
             'title' => $request->title,
+            'about'=>$request->about,
             'description' => $request->description,
             'content' => $request->content,
             'image' => $image, 

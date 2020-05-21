@@ -16,6 +16,7 @@
     @if($posts->count() > 0)
         <table class="table">
             <thead>
+                <th>Image</th>
                 
                 <th>Titles</th>
                 <th>Category</th>
@@ -25,7 +26,11 @@
              </thead> 
              <tbody>
                  @foreach ($posts as $post)
+
                  <tr>
+                     <td>
+                 <img src="{{ $post->image }}" alt="">       
+                     </td>
                      <td>
                          {{ $post->title }}
                      </td>

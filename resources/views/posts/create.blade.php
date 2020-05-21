@@ -43,9 +43,9 @@
             </div>
 
             @if(isset($post))
-                <div class="form-control">
+                <div class="form-control image" style="height:199px;">
 
-                <img src="{{ asset($post->image)}}" style = "width: 100%">
+                <img src="{{ asset($post->image)}}" style = "width: 100%;height:183px">
 
                 </div>
 
