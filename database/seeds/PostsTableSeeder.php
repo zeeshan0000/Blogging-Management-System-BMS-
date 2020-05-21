@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Post;
 use App\Category;
 use App\Tag;
+use Illuminate\Support\Facades\Hash;
 class PostsTableSeeder extends Seeder
 {
     /**
@@ -21,37 +22,48 @@ class PostsTableSeeder extends Seeder
             'name'=>'jquery',
 
         ]);
+       $author1=App\User::create([
+           'name'=>'john doe',
+           'email'=>'johndoe@example.com',
+           'password'=>Hash::make('password'),
+       ]);
+       $author2=App\User::create([
+        'name'=>'jane doe',
+        'email'=>'janedoe@example.com',
+        'password'=>Hash::make('password'),
+    ]);
       
-        $post1=Post::create([
+    $post1=$author1->posts()->create([
            'title'=>'We relocated our office to a new designed garage',
-           'about'=>'About',
+        
            'description'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
            'content'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
            'category_id'=>$category1->id,
            'image'=>'posts/1.jpg',
+           'user_id'=>$author1->id,
 
         ]);
-        $post2=Post::create([
+        $post2=$author2->posts()->create([
             'title'=>'Top 5 brilliant content marketing strategies',
-            'about'=>'About',
+           
             'description'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
             'content'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
             'category_id'=>$category2->id,
             'image'=>'posts/2.jpg',
  
          ]);
-         $post3=Post::create([
+         $post3=$author2->posts()->create([
             'title'=>'Best practices for minimalist design with example',
-            'about'=>'About',
+           
             'description'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
             'content'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
             'category_id'=>$category2->id,
             'image'=>'posts/3.jpg',
  
          ]);
-         $post3=Post::create([
+         $post4=$author1->posts()->create([
             'title'=>'New published books to read by a product designer',
-            'about'=>'About',
+            
             'description'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
             'content'=>'packages and web page editors now use Lorem Ipsum as their default model text, and a search for  will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
             'category_id'=>$category1->id,

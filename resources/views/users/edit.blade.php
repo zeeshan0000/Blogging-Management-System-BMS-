@@ -26,8 +26,8 @@
                             </div>
                
                             <div class="form-group">
-                                <label for="about">About Me</label>
-                                <textarea name="about" id="about" cols="5" rows="5" class="form-control">{{$user->about}}</textarea>
+                                <label for="about">Email</label>
+                                <input type="text" name="about" id="about" cols="5" rows="5" class="form-control">{{$user->email}}</textarea>
                             </div>
                             <button type="submit"class="btn btn-success">Update</button>
                
