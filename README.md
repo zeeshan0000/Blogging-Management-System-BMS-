@@ -1,1 +1,1 @@
-Blogging management system with laravel 2020
+Blogging management system with laravel and vue.js
